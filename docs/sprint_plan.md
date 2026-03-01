@@ -1,12 +1,12 @@
 # Sprint Plan — IA-04: Implementation Sprint
 **Author:** Alec Cepeda (acepeda)  
 **Course:** MPCS 51200 — Introduction to Software Engineering  
-**Sprint Duration:** 2 weeks (Thu Mar 5, 2026 6:00pm)
+**Sprint Duration:** 2 weeks (Due: Thu Mar 5, 2026 6:00pm)
 
 ---
 ## Sprint Goal
 
-Deliver a working Python service layer that allows an event organizer to create an event and register users for it — enforcing all core business rules — and expose event search functionality so students can discover events by keyword, date range, or venue.
+Deliver a working Python service layer that allows an event organizer to create an event and register users for it. This will enforce all core business rules. In addition, event search functionality will be added so students can discover events by keyword, date range, or venue.
 
 ---
 
@@ -27,7 +27,7 @@ Deliver a working Python service layer that allows an event organizer to create 
 
 **Selected feature: Search Events**
 
-In IA-02, FR-04 (Event Discoverability) and US-03 ("As a student, I want to search for events by keyword so that I can quickly find relevant events") were both given high priority, and reflect that discoverability is central to student adoption of the platform. The product vision in IA-01 explicitly ties success to students choosing the system voluntarily which requires them to be able to find events easily.
+In IA-02, FR-04 (Event Discoverability) and US-03 ("As a student, I want to search for events by keyword so that I can quickly find relevant events") were both given high priority, and reflect that discoverability is central to student adoption of the platform. 
 
 In TA-03, the `GET /events` API endpoint was designed with filtering by date, category, and location, indicating that search was already considered a core aspect of the software. Implementing search in the service layer directly supports that design intent and creates a natural foundation for the REST API layer if that is added in the future.
 

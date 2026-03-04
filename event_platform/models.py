@@ -30,7 +30,6 @@ class User:
 class Event:
     """
     Core event entity. Holds all event data and current status.
-    id is assigned by the service layer, not the caller.
     """
     id: int
     title: str
@@ -59,6 +58,7 @@ class Registration:
     event_id: int
     user_id: str
     status: RegistrationStatus
+    # This is initializing registered_at as datetime.now at the time of creation
     registered_at: datetime = field(default_factory=datetime.now)
 
     def __repr__(self) -> str:

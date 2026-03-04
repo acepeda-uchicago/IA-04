@@ -286,6 +286,5 @@ class EventService:
             return datetime.strptime(date_str, DATE_FORMAT)
         except ValueError:
             raise ValueError(
-                f"Cannot parse date {date_str!r}. "
-                "Expected format: 'YYYY-MM-DDTHH:MM:SS'."
+                f"Cannot parse date {date_str!r}.\nExpected format: {DATE_FORMAT}."
             )

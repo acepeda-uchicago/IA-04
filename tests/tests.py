@@ -62,7 +62,7 @@ class TestCreateEvent:
 
     def test_create_event_accepts_datetime_string(self):
         service = make_service()
-        future_dt = (datetime.now() + timedelta(days=10)).strftime("%Y-%m-%dT15:00:00")
+        future_dt = (datetime.now() + timedelta(days=10)).strftime(DATE_FORMAT)
         event = service.create_event(
             title="Workshop", description="Details.", date=future_dt, duration=1.0, venue="Lab", capacity=5
         )
@@ -99,8 +99,6 @@ class TestCreateEvent:
         with pytest.raises(ValueError):
             make_event(service, date="not-a-date")
 
-    # --- Validation: capacity ---
-
     def test_create_event_raises_on_zero_capacity(self):
         service = make_service()
         with pytest.raises(ValueError, match="capacity"):
@@ -119,12 +117,8 @@ class TestCreateEvent:
             )
 
 
-# ---------------------------------------------------------------------------
 # register — happy path
-# ---------------------------------------------------------------------------
-
 class TestRegister:
-
     def test_register_returns_confirmed_when_space_available(self):
         service = make_service()
         event = make_event(service, capacity=5)
@@ -156,12 +150,12 @@ class TestRegister:
     def test_register_one_over_capacity_is_waitlisted(self):
         service = make_service()
         event = make_event(service, capacity=1)
-        service.register(event_id=event.id, user_id="user_1")
-        reg = service.register(event_id=event.id, user_id="user_2")
-        assert reg.status == RegistrationStatus.WAITLISTED
+        u1 = service.register(event_id=event.id, user_id="user_1")
+        u2 = service.register(event_id=event.id, user_id="user_2")
+        assert u1.status == RegistrationStatus.CONFIRMED
+        assert u2.status == RegistrationStatus.WAITLISTED
 
-    # --- Error conditions ---
-
+    # validation (error raising)
     def test_register_raises_on_nonexistent_event(self):
         service = make_service()
         with pytest.raises(EventNotFoundError):

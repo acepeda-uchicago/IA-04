@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 Run all tests from the IA-04 directory:
 ```bash
-pytest tests/ -v
+pytest tests/test.py -v
 ```
 
 
